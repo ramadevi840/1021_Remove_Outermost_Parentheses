@@ -1,0 +1,28 @@
+class Solution {
+    public String removeOuterParentheses(String s) {
+        // tc- O(n2) sc-O(n)
+        StringBuilder sb= new StringBuilder();
+        int opencount=0;
+        int closecount=0;
+        StringBuilder temp= new StringBuilder();
+        for(char c: s.toCharArray()){ // it takes O(n)
+           if(c=='('){
+            temp.append(c);
+            opencount++;
+           }
+           else{
+                temp.append(c);
+                closecount++;
+            }   
+           if(opencount==closecount){
+            temp.deleteCharAt(0);
+             temp.deleteCharAt(temp.length()-1);
+            sb.append(temp);
+            temp.setLength(0); 
+            opencount=0;
+            closecount=0;
+           }  
+        }
+        return sb.toString();
+    }
+}
